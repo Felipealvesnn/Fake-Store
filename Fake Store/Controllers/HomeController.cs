@@ -2,6 +2,7 @@
 using Fake_Store_Domain.Interfaces;
 using Fake_Store_Domain.Models;
 using Microsoft.AspNetCore.Mvc;
+using ReflectionIT.Mvc.Paging;
 using System.Diagnostics;
 
 namespace Fake_Store.Controllers
@@ -28,9 +29,17 @@ namespace Fake_Store.Controllers
 
         public async Task<IActionResult> List(string filter, int pageindex = 1, string sort = "Nome")
         {
-            var Model = await _Produtos.RetornaTodos();
+            var resultado = _Produtos.RetornaTodos();
 
-            return View(Model);
+            if (!string.IsNullOrWhiteSpace(filter))
+            {
+                resultado = resultado.Where(p => p.Nome.Contains(filter));
+            }
+
+            var model = await PagingList.CreateAsync(resultado, 3, pageindex, sort, "Nome");
+            model.RouteValue = new RouteValueDictionary { { "filter", filter } };
+
+            return View(model);
         }
 
         public ViewResult Search(string searchString)

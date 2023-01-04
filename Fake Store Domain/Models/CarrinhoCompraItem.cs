@@ -14,8 +14,7 @@ namespace Fake_Store_Domain.Models
 
         [StringLength(200)]
         public string CarrinhoCompraId { get; set; }
-
-        public int LancheId { get; set; }
+        public int Produtosid { get; set; }
         public virtual Produtos Produtos { get; set; }
     }
 }

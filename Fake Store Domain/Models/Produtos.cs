@@ -8,8 +8,10 @@ namespace Fake_Store_Domain.Models
 {
     public class Rating
     {
+        public int id { get; set; }
         public double rate { get; set; }
         public int count { get; set; }
+        public int ProdutosId { get; set; }
     }
     public class Produtos
     {
