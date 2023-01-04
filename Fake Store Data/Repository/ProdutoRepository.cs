@@ -36,18 +36,18 @@ namespace Fake_Store_Data.Repository
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Produtos>> RetornaTodos()
+        public async Task< IEnumerable<Produtos>> RetornaTodos()
         {
           
             var client = new RestClient("https://fakestoreapi.com/products");
-            var request = new RestRequest("",Method.Get);
+            var request =  new RestRequest("",Method.Get);
             request.AddHeader("content-type", "application/json;charset=utf-8");
             request.AddHeader("Accept", "application/json, text/plain, */*");
-            var queryResult = client.Execute<List<Produtos>>(request).Data;
+            var queryResult =  client.Execute<IEnumerable<Produtos>>(request).Data;
 
            // var Model = JsonConvert.DeserializeObject<List<Produtos>>(queryResult.Content);
 
-            return (queryResult);
+            return  queryResult;
         }
     }
 }

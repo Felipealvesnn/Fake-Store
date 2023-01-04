@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Fake_Store_Domain.Models.Produtos>
+﻿@model ReflectionIT.Mvc.Paging.PagingList<Produtos>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -28,6 +28,20 @@
         </div>
     </div>
 </div>
+
+<form method="get" class="form-inline">
+
+    <input name="filter" class="form-control" placeholder="filtro"
+           value="@Model.RouteValue["Filter"]" />
+
+    <button type="submit" class="btn btn-info mt-1">Procurar</button>
+</form>
+
+Total de Pedidos : @Model.TotalRecordCount
+<div>
+    <vc:pager paging-list="@Model"></vc:pager>
+</div>
+
 <!-- Section-->
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-5">

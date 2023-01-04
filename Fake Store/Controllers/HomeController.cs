@@ -22,25 +22,25 @@ namespace Fake_Store.Controllers
 
         public async Task< IActionResult> Index()
         {
-           var Model =  await _Produtos.RetornaTodos();
+           var Model = await  _Produtos.RetornaTodos();
 
-            return View(Model.Take(5));
+            return View( Model.Take(5)) ;
         }
 
-        public async Task<IActionResult> List(string filter, int pageindex = 1, string sort = "Nome")
-        {
-            var resultado = _Produtos.RetornaTodos();
+    //    public async Task<IActionResult> List(string filter, int pageindex = 1, string sort = "Nome")
+        //{
+        //    var resultado = _Produtos.RetornaTodos();
 
-            if (!string.IsNullOrWhiteSpace(filter))
-            {
-                resultado = resultado.Where(p => p.Nome.Contains(filter));
-            }
+        //    if (!string.IsNullOrWhiteSpace(filter))
+        //    {
+        //        resultado = resultado.Where(p => p.description.Contains(filter));
+        //    }
 
-            var model = await PagingList.CreateAsync(resultado, 3, pageindex, sort, "Nome");
-            model.RouteValue = new RouteValueDictionary { { "filter", filter } };
+        //    var model = await PagingList.CreateAsync(resultado, 3, pageindex, sort, "Nome");
+        //    model.RouteValue = new RouteValueDictionary { { "filter", filter } };
 
-            return View(model);
-        }
+        //    return View(model);
+     //   }
 
         public ViewResult Search(string searchString)
         {

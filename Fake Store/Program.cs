@@ -6,6 +6,7 @@ using Fake_Store_Data.DataSet;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Fake_Store_Data.Identity;
+using ReflectionIT.Mvc.Paging;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,6 +42,12 @@ builder.Services.AddAuthorization(options =>
         {
             politica.RequireRole("Admin");
         });
+});
+
+
+builder.Services.AddPaging(options => {
+    options.ViewName = "Bootstrap5";
+    options.PageParameterName = "pageindex";
 });
 
 var app = builder.Build();
