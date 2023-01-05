@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Fake_Store_Data.Identity;
 using ReflectionIT.Mvc.Paging;
+using Fake_Store_Aplication;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,7 +36,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>()
             .AddDefaultTokenProviders();
 
 
-//builder.Services.AddScoped(sp => CarrinhoCompra.GetCarrinho(sp)); // carrinho instaciado e iniciado na sessao
+builder.Services.AddScoped(sp => CarrinhoCompra.GetCarrinho(sp)); // carrinho instaciado e iniciado na sessao
 
 builder.Services.AddAuthorization(options =>
 {
@@ -71,7 +72,8 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseSession(); //´para ter uma sessão 
+//app.UseMvc();
 
 
 

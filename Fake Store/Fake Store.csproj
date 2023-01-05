@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Fake Store Aplication\Fake Store Aplication.csproj" />
     <ProjectReference Include="..\Fake Store Data\Fake Store Data.csproj" />
     <ProjectReference Include="..\Fake Store Domain\Fake Store Domain.csproj" />
   </ItemGroup>

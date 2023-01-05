@@ -1,0 +1,24 @@
+﻿@model CarinhoCompraVM
+
+
+
+   @* <a asp-controller="CarrinhoCompra" asp-action="Index">
+        <span><img src="~/images/cart-5-16.ico" /></span>
+        <span style="color:white">
+            @Model.CarrinhoCompra.CarrinhoCompraItems.Count
+        </span>
+    </a>*@
+    <a asp-controller="CarrinhoCompra" asp-action="Index" class="d-flex">
+        <button class="btn btn-outline-dark" type="submit">
+            <i class="bi-cart-fill me-1"></i>
+            Cart
+            <span class="badge bg-dark text-white ms-1 rounded-pill">
+                @if (Model.CarrinhoCompra.CarrinhoCompraItems.Count > 0)
+{
+                @Model.CarrinhoCompra.CarrinhoCompraItems.Count
+} 1
+            </span>
+        </button>
+    </a>
+
+
