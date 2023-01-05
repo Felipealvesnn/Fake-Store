@@ -40,10 +40,7 @@
                         <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                     </button>
                 </form>
-                <div class="text-end ">
-                    <a asp-controller="Account" asp-action="Login" asp-route-returnUrl="@string.Format("{0}{1}",Context.Request.Path, Context.Request.QueryString)" class="btn btn-outline-dark mx-1">Login</a>
-                    <a type="button" asp-controller="Account" asp-action="Register" class="btn btn-warning">Register</a>
-                </div>
+                @await Html.PartialAsync("_loginPartial")
             </div>
         </div>
     </nav>

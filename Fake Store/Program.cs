@@ -18,6 +18,7 @@ builder.Services.AddSession();
 // injeções de dependencia
 builder.Services.AddTransient<IProdutos, ProdutoRepository>();
 builder.Services.AddScoped<ISeedUserRoleInitial, SeedUserRoleInitial>();
+builder.Services.AddScoped<IAuthenticate, AuthenticateService>();
 
 
 builder.Services.AddDbContext<DbSet>(options =>
@@ -32,6 +33,7 @@ builder.Services.AddDbContext<DbSet>(options =>
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
             .AddEntityFrameworkStores<DbSet>()
             .AddDefaultTokenProviders();
+
 
 //builder.Services.AddScoped(sp => CarrinhoCompra.GetCarrinho(sp)); // carrinho instaciado e iniciado na sessao
 

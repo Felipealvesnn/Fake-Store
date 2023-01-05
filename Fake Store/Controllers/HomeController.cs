@@ -1,12 +1,14 @@
 ﻿using Fake_Store.Models;
 using Fake_Store_Domain.Interfaces;
 using Fake_Store_Domain.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ReflectionIT.Mvc.Paging;
 using System.Diagnostics;
 
 namespace Fake_Store.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -24,23 +26,26 @@ namespace Fake_Store.Controllers
         {
            var Model = await  _Produtos.RetornaTodos();
 
+            
             return View( Model.Take(5)) ;
         }
 
-    //    public async Task<IActionResult> List(string filter, int pageindex = 1, string sort = "Nome")
+        //public async Task<IActionResult> List(string filter, int pageindex = 1, string sort = "Nome")
         //{
-        //    var resultado = _Produtos.RetornaTodos();
+        //    var resultado = await _Produtos.RetornaTodos();
+        //    var querable = resultado.AsQueryable();
 
         //    if (!string.IsNullOrWhiteSpace(filter))
         //    {
-        //        resultado = resultado.Where(p => p.description.Contains(filter));
+        //        querable = querable.Where(p => p.description.Contains(filter)).AsQueryable();
+                
         //    }
 
-        //    var model = await PagingList.CreateAsync(resultado, 3, pageindex, sort, "Nome");
+        //    var model = await PagingList.CreateAsync(querable, 3, pageindex, sort, "Nome");
         //    model.RouteValue = new RouteValueDictionary { { "filter", filter } };
 
         //    return View(model);
-     //   }
+        //}
 
         public ViewResult Search(string searchString)
         {

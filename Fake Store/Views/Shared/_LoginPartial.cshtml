@@ -1,0 +1,14 @@
+﻿@if (Context.User.Identity.IsAuthenticated)
+{
+        
+            <a class="btn btn-outline-dark mx-1" asp-area="" asp-controller="Account" asp-action="Logout" 
+           style="color: blue">@Context.User.Identity.Name - Logout</a>
+       
+}
+else{
+    <div class="text-end ">
+                    <a asp-controller="Account" asp-action="Login" asp-route-returnUrl="@string.Format("{0}{1}",Context.Request.Path, Context.Request.QueryString)" class="btn btn-outline-dark mx-1">Login</a>
+                    <a type="button" asp-controller="Account" asp-action="Register" class="btn btn-warning">Register</a>
+            </div>
+
+}
