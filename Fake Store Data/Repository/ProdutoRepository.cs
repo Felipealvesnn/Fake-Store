@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Fake_Store_Data.Repository
 {
-    public class ProdutoRepository : IProdutos
+    public class ProdutoRepository : IProdutosRepository
     {
         
    

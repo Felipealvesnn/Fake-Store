@@ -17,7 +17,7 @@ builder.Services.AddMemoryCache();
 builder.Services.AddSession();
 
 // injeções de dependencia
-builder.Services.AddTransient<IProdutos, ProdutoRepository>();
+builder.Services.AddTransient<IProdutosRepository, ProdutoRepository>();
 builder.Services.AddScoped<ISeedUserRoleInitial, SeedUserRoleInitial>();
 builder.Services.AddScoped<IAuthenticate, AuthenticateService>();
 

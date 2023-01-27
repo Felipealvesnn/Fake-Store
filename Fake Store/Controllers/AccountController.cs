@@ -23,6 +23,7 @@ namespace Fake_Store.Controllers
         public async Task<IActionResult> Login(LoginVM loginVM)
         {
             var result = await _authentication.Authenticate(loginVM.Email, loginVM.Password);
+            
 
             if (result)
             {

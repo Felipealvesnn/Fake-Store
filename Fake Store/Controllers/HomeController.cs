@@ -12,11 +12,11 @@ namespace Fake_Store.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IProdutos _Produtos;
+        private readonly IProdutosRepository _Produtos;
 
         
 
-        public HomeController(ILogger<HomeController> logger, IProdutos lanches)
+        public HomeController(ILogger<HomeController> logger, IProdutosRepository lanches)
         {
             _logger = logger;
             _Produtos = lanches;

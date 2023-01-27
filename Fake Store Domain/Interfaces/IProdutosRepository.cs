@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Fake_Store_Domain.Interfaces
 {
-    public interface IProdutos
+    public interface IProdutosRepository
     {
        Task< IEnumerable<Produtos>> RetornaTodos();
         Produtos PegaLanchePorId(int? id);
