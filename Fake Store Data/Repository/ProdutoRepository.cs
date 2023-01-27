@@ -36,10 +36,12 @@ namespace Fake_Store_Data.Repository
             throw new NotImplementedException();
         }
 
-        public async Task< IEnumerable<Produtos>> RetornaTodos()
+        public async Task< IEnumerable<Produtos>> RetornaTodos(int? limite)
         {
-          
-            var client = new RestClient("https://fakestoreapi.com/products");
+    
+             var   client = new RestClient($"https://fakestoreapi.com/products?limit={limite}");
+           
+            
             var request =  new RestRequest("",Method.Get);
             request.AddHeader("content-type", "application/json;charset=utf-8");
             request.AddHeader("Accept", "application/json, text/plain, */*");

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Fake_Store.Controllers
 {
+
     public class AccountController : Controller
     {
 
@@ -14,7 +15,7 @@ namespace Fake_Store.Controllers
         {
             _authentication = authenticate;
         }
-
+        [HttpGet]
         public IActionResult Login()
         {
             return View();
@@ -58,6 +59,7 @@ namespace Fake_Store.Controllers
             else
             {
                 ModelState.AddModelError(string.Empty, "Invalid register attempt (password must be strong.");
+
                 return View(model);
             }
         }

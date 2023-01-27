@@ -24,10 +24,10 @@ namespace Fake_Store.Controllers
 
         public async Task< IActionResult> Index()
         {
-           var Model = await  _Produtos.RetornaTodos();
+           var Model = await  _Produtos.RetornaTodos(5);
 
             
-            return View( Model.Take(5)) ;
+            return View( Model) ;
         }
 
         //public async Task<IActionResult> List(string filter, int pageindex = 1, string sort = "Nome")
@@ -55,7 +55,7 @@ namespace Fake_Store.Controllers
 
             if (string.IsNullOrEmpty(searchString))
             {
-                var dsd = _Produtos.RetornaTodos();
+                var dsd = _Produtos.RetornaTodos(10);
 
                 categoriaAtual = "Todos os Lanches";
             }

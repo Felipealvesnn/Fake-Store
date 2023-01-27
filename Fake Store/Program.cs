@@ -8,32 +8,29 @@ using Microsoft.AspNetCore.Identity;
 using Fake_Store_Data.Identity;
 using ReflectionIT.Mvc.Paging;
 using Fake_Store_Aplication;
+using Fake_Store_IOC;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddMemoryCache();
-builder.Services.AddSession();
-
-// injeções de dependencia
-builder.Services.AddTransient<IProdutosRepository, ProdutoRepository>();
-builder.Services.AddScoped<ISeedUserRoleInitial, SeedUserRoleInitial>();
-builder.Services.AddScoped<IAuthenticate, AuthenticateService>();
-
-
-builder.Services.AddDbContext<DbSet>(options =>
+builder.Services.AddSession(options =>
 {
-    options.EnableSensitiveDataLogging();
-    options.UseSqlServer(builder.Configuration.GetConnectionString("FakeStoreconeccaoDB"),
-        b => b.MigrationsAssembly(typeof(DbSet).Assembly.FullName));
-    options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+    options.IdleTimeout = TimeSpan.FromMinutes(5);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
 });
 
-// iniciar Identity
-builder.Services.AddIdentity<IdentityUser, IdentityRole>()
-            .AddEntityFrameworkStores<DbSet>()
-            .AddDefaultTokenProviders();
+// add o serviço do IOC
+builder.Services.ConfiguraçãoServices(builder.Configuration);
+
+
+
+
+
+
+
 
 
 builder.Services.AddScoped(sp => CarrinhoCompra.GetCarrinho(sp)); // carrinho instaciado e iniciado na sessao

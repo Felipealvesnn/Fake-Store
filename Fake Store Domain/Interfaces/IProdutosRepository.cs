@@ -9,7 +9,7 @@ namespace Fake_Store_Domain.Interfaces
 {
     public interface IProdutosRepository
     {
-       Task< IEnumerable<Produtos>> RetornaTodos();
+       Task< IEnumerable<Produtos>> RetornaTodos(int? limite);
         Produtos PegaLanchePorId(int? id);
         void Adicionar(Produtos produtos);
         void Atualizar(Produtos produtos);
