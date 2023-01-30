@@ -4,6 +4,7 @@ using Fake_Store_Data.DataSet;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FakeStoreData.Migrations
 {
     [DbContext(typeof(DbSet))]
-    partial class DbSetModelSnapshot : ModelSnapshot
+    [Migration("20230130162515_attModel")]
+    partial class attModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,6 +24,33 @@ namespace FakeStoreData.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Fake_Store_Domain.Models.CarrinhoCompraItem", b =>
+                {
+                    b.Property<int>("CarrinhoCompraItemId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CarrinhoCompraItemId"));
+
+                    b.Property<string>("CarrinhoCompraId")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<int>("Productid")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantidade")
+                        .HasMaxLength(100)
+                        .HasColumnType("int");
+
+                    b.HasKey("CarrinhoCompraItemId");
+
+                    b.HasIndex("Productid");
+
+                    b.ToTable("CarrinhoCompraItem");
+                });
 
             modelBuilder.Entity("Fake_Store_Domain.Models.Product", b =>
                 {
@@ -250,6 +280,17 @@ namespace FakeStoreData.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("Fake_Store_Domain.Models.CarrinhoCompraItem", b =>
+                {
+                    b.HasOne("Fake_Store_Domain.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("Productid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Fake_Store_Domain.Models.Product", b =>

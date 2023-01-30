@@ -26,7 +26,7 @@ namespace Fake_Store_IOC
 
             
             // injeções de dependencia
-            Services.AddTransient<IProdutosRepository, ProdutoRepository>();
+            Services.AddTransient<IProductRepository, ProdutoRepository>();
             Services.AddScoped<ISeedUserRoleInitial, SeedUserRoleInitial>();
             Services.AddScoped<IAuthenticate, AuthenticateService>();
 

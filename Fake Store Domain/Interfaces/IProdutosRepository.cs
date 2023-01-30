@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Fake_Store_Domain.Interfaces
 {
-    public interface IProdutosRepository
+    public interface IProductRepository
     {
-       Task< IEnumerable<Produtos>> RetornaTodos(int? limite);
-        Produtos PegaLanchePorId(int? id);
-        void Adicionar(Produtos produtos);
-        void Atualizar(Produtos produtos);
-        void Remover(Produtos produtos);
+       Task< IEnumerable<Product>> RetornaTodos(int? limite);
+        Product RetornaProdutoPorId(int? id);
+        void Adicionar(Product Product);
+        void Atualizar(Product Product);
+        void Remover(Product Product);
     }
 }

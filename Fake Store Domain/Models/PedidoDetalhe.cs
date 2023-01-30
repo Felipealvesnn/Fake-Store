@@ -16,8 +16,8 @@ namespace Fake_Store_Domain.Models
         public decimal Preco { get; set; }
         public string Nome { get; set; }
         public string ImagemUrl { get; set; }
-        public int ProdutosId { get; set; }
-        public virtual Produtos Produtos { get; set; }
+        public int ProductId { get; set; }
+        public virtual Product Product { get; set; }
         public int PedidoId { get; set; }
         public virtual Pedido Pedido { get; set; }
     }

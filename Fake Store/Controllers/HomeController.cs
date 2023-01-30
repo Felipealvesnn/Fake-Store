@@ -12,19 +12,19 @@ namespace Fake_Store.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IProdutosRepository _Produtos;
+        private readonly IProductRepository _Product;
 
         
 
-        public HomeController(ILogger<HomeController> logger, IProdutosRepository lanches)
+        public HomeController(ILogger<HomeController> logger, IProductRepository lanches)
         {
             _logger = logger;
-            _Produtos = lanches;
+            _Product = lanches;
         }
 
         public async Task< IActionResult> Index()
         {
-           var Model = await  _Produtos.RetornaTodos(5);
+           var Model = await  _Product.RetornaTodos(5);
 
             
             return View( Model) ;
@@ -32,7 +32,7 @@ namespace Fake_Store.Controllers
 
         //public async Task<IActionResult> List(string filter, int pageindex = 1, string sort = "Nome")
         //{
-        //    var resultado = await _Produtos.RetornaTodos();
+        //    var resultado = await _Product.RetornaTodos();
         //    var querable = resultado.AsQueryable();
 
         //    if (!string.IsNullOrWhiteSpace(filter))
@@ -49,19 +49,19 @@ namespace Fake_Store.Controllers
 
         public ViewResult Search(string searchString)
         {
-            IEnumerable<Produtos> Produtos;
+            IEnumerable<Product> Product;
 
             string categoriaAtual = string.Empty;
 
             if (string.IsNullOrEmpty(searchString))
             {
-                var dsd = _Produtos.RetornaTodos(10);
+                var dsd = _Product.RetornaTodos(5);
 
                 categoriaAtual = "Todos os Lanches";
             }
             else
             {
-                //var dsd =  = _Produtos.RetornaTodos(searchString);
+                //var dsd =  = _Product.RetornaTodos(searchString);
 
                 //if (lanches.Any())
                 //    categoriaAtual = "Lanches";

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Fake_Store_Domain.Models.Produtos>
+﻿@model IEnumerable<Fake_Store_Domain.Models.Product>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -35,12 +35,29 @@
                             </div>
                         </div>
                         <!-- Product actions-->
-                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto"
-                               asp-controller="CarrinhoCompra"
-                               asp-action="AdicionarItemNoCarrinho" asp-route-lancheId="@intem.id">
-                            Add to cart</a></div>
-                        </div>
+                          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                    <div class="text-center">
+                        <a class="btn btn-outline-dark mt-auto"
+                    asp-controller="CarrinhoCompra"
+                               asp-action="AdicionarAoCarrinho" method="post" asp-route-id="@intem.id">
+                    Add to cart</a>
+                                <a class="btn btn-outline-dark mt-auto"
+                               href="@Url.Action("AdicionarAoCarrinho", "CarrinhoCompra",new {id=intem.id} ) ">
+                                    Add to cart
+                                </a>
+                
+                </div>
+                    </div>
+
+                     @*   <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center">
+                                <a class="btn btn-outline-dark mt-auto"
+                               onclick="AdcionarAocarrinho(@intem.id)">
+                                    Add to cart
+                                </a>
+                            </div>
+                        </div>*@
+
                     </div>
                 </div>
 
@@ -53,3 +70,12 @@
     </div>
 
 </section>
+
+<script>
+    function AdcionarAocarrinho(int id) {
+
+
+    }
+
+
+</script>

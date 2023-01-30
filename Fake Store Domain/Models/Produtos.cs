@@ -11,9 +11,9 @@ namespace Fake_Store_Domain.Models
         public int id { get; set; }
         public double rate { get; set; }
         public int count { get; set; }
-        public int ProdutosId { get; set; }
+        public int ProductId { get; set; }
     }
-    public class Produtos
+    public class Product
     {
         public int id { get; set; }
         public string title { get; set; }

@@ -1,4 +1,5 @@
-﻿@model CarinhoCompraVM
+﻿@*@model CarinhoCompraVM*@
+@model CarrinhoCompraFakeStore
 
 
 
@@ -13,10 +14,14 @@
             <i class="bi-cart-fill me-1"></i>
             Cart
             <span class="badge bg-dark text-white ms-1 rounded-pill">
-                @if (Model.CarrinhoCompra.CarrinhoCompraItems.Count > 0)
+      @*          @if (Model.CarrinhoCompra.CarrinhoCompraItems.Count > 0)
 {
                 @Model.CarrinhoCompra.CarrinhoCompraItems.Count
-} 1
+} 1*@
+                     @if (Model.products.Count > 0)
+            {
+                @Model.products.Count
+            } 
             </span>
         </button>
     </a>

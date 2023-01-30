@@ -17,15 +17,14 @@ namespace Fake_Store_Data.DataSet
         {
 
         }
-        public DbSet<CarrinhoCompraItem> CarrinhoCompraItem { get; set; }
+    
 
-        //public DbSet<Pedido> Pedidos { get; set; }
-        //public DbSet<PedidoDetalhe> PedidoDetalhes { get; set; }
+      
 
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Produtos>().OwnsOne(x => x.rating);
+            builder.Entity<Product>().OwnsOne(x => x.rating);
             base.OnModelCreating(builder);
             builder.ApplyConfigurationsFromAssembly(typeof(DbSet).Assembly);
 

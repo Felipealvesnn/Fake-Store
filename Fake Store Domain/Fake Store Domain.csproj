@@ -7,4 +7,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Models\CarrinhoCompraItem.cs" />
+    <Compile Remove="Models\Pedido.cs" />
+    <Compile Remove="Models\PedidoDetalhe.cs" />
+  </ItemGroup>
+
 </Project>

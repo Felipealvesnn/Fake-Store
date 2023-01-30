@@ -51,7 +51,7 @@ namespace FakeStoreData.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Produtos",
+                name: "Product",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false)
@@ -67,7 +67,7 @@ namespace FakeStoreData.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Produtos", x => x.id);
+                    table.PrimaryKey("PK_Product", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -184,15 +184,15 @@ namespace FakeStoreData.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Quantidade = table.Column<int>(type: "int", maxLength: 100, nullable: false),
                     CarrinhoCompraId = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    Produtosid = table.Column<int>(type: "int", nullable: false)
+                    Productid = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CarrinhoCompraItem", x => x.CarrinhoCompraItemId);
                     table.ForeignKey(
-                        name: "FK_CarrinhoCompraItem_Produtos_Produtosid",
-                        column: x => x.Produtosid,
-                        principalTable: "Produtos",
+                        name: "FK_CarrinhoCompraItem_Product_Productid",
+                        column: x => x.Productid,
+                        principalTable: "Product",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -237,9 +237,9 @@ namespace FakeStoreData.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CarrinhoCompraItem_Produtosid",
+                name: "IX_CarrinhoCompraItem_Productid",
                 table: "CarrinhoCompraItem",
-                column: "Produtosid");
+                column: "Productid");
         }
 
         /// <inheritdoc />
@@ -270,7 +270,7 @@ namespace FakeStoreData.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Produtos");
+                name: "Product");
         }
     }
 }

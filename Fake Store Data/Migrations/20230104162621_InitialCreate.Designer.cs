@@ -38,7 +38,7 @@ namespace FakeStoreData.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<int>("Produtosid")
+                    b.Property<int>("Productid")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantidade")
@@ -47,12 +47,12 @@ namespace FakeStoreData.Migrations
 
                     b.HasKey("CarrinhoCompraItemId");
 
-                    b.HasIndex("Produtosid");
+                    b.HasIndex("Productid");
 
                     b.ToTable("CarrinhoCompraItem");
                 });
 
-            modelBuilder.Entity("Fake_Store_Domain.Models.Produtos", b =>
+            modelBuilder.Entity("Fake_Store_Domain.Models.Product", b =>
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
@@ -81,7 +81,7 @@ namespace FakeStoreData.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("Produtos");
+                    b.ToTable("Product");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -284,20 +284,20 @@ namespace FakeStoreData.Migrations
 
             modelBuilder.Entity("Fake_Store_Domain.Models.CarrinhoCompraItem", b =>
                 {
-                    b.HasOne("Fake_Store_Domain.Models.Produtos", "Produtos")
+                    b.HasOne("Fake_Store_Domain.Models.Product", "Product")
                         .WithMany()
-                        .HasForeignKey("Produtosid")
+                        .HasForeignKey("Productid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Produtos");
+                    b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("Fake_Store_Domain.Models.Produtos", b =>
+            modelBuilder.Entity("Fake_Store_Domain.Models.Product", b =>
                 {
                     b.OwnsOne("Fake_Store_Domain.Models.Rating", "rating", b1 =>
                         {
-                            b1.Property<int>("ProdutosId")
+                            b1.Property<int>("ProductId")
                                 .HasColumnType("int");
 
                             b1.Property<int>("count")
@@ -309,12 +309,12 @@ namespace FakeStoreData.Migrations
                             b1.Property<double>("rate")
                                 .HasColumnType("float");
 
-                            b1.HasKey("ProdutosId");
+                            b1.HasKey("ProductId");
 
-                            b1.ToTable("Produtos");
+                            b1.ToTable("Product");
 
                             b1.WithOwner()
-                                .HasForeignKey("ProdutosId");
+                                .HasForeignKey("ProductId");
                         });
 
                     b.Navigation("rating")

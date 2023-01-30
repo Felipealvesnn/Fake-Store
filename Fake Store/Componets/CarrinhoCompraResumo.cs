@@ -1,35 +1,26 @@
-﻿using Fake_Store.Models;
-using Fake_Store_Aplication;
+﻿using Fake_Store_Domain.Models;
 using Microsoft.AspNetCore.Mvc;
+using RestSharp;
 
 namespace Fake_Store.Componets
 {
     public class CarrinhoCompraResumo : ViewComponent
     {
-        private readonly CarrinhoCompra _carrrinhoCompra;
-        public CarrinhoCompraResumo(CarrinhoCompra carrrinhoCompra)
-        {
-            _carrrinhoCompra = carrrinhoCompra;
-        }
+     
         public IViewComponentResult Invoke()
         {
-            var itens = _carrrinhoCompra.GetCarrinhoCompraItens();
 
-            //var itens = new List<CarrinhoCompraItem>() {
-            //new CarrinhoCompraItem(),
-            //new CarrinhoCompraItem()
+            var client = new RestClient($"https://fakestoreapi.com/carts/1");
+            
 
-            //};
+            var request = new RestRequest("", Method.Get);
+            request.AddHeader("content-type", "application/json;charset=utf-8");
+            request.AddHeader("Accept", "application/json, text/plain, */*");
+            var queryResult = client.Execute<CarrinhoCompraFakeStore>(request).Data;
+            
+         
 
-            _carrrinhoCompra.CarrinhoCompraItems = itens;
-
-            var carrinhoCompraVM = new CarinhoCompraVM
-            {
-                CarrinhoCompra = _carrrinhoCompra,
-                CarrinhoCompraTotal = _carrrinhoCompra.GetCarrinhoCompraTotal(),
-            };
-
-            return View( carrinhoCompraVM);
+            return View(queryResult);
         }
 
     }

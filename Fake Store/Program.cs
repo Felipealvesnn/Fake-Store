@@ -1,13 +1,5 @@
-using Fake_Store_Data.Repository;
 using Fake_Store_Domain.Interfaces;
-using System.Configuration;
-using System;
-using Fake_Store_Data.DataSet;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
-using Fake_Store_Data.Identity;
 using ReflectionIT.Mvc.Paging;
-using Fake_Store_Aplication;
 using Fake_Store_IOC;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddMemoryCache();
+
+
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(5);
@@ -33,7 +27,7 @@ builder.Services.ConfiguraçãoServices(builder.Configuration);
 
 
 
-builder.Services.AddScoped(sp => CarrinhoCompra.GetCarrinho(sp)); // carrinho instaciado e iniciado na sessao
+
 
 builder.Services.AddAuthorization(options =>
 {
